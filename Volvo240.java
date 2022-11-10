@@ -15,6 +15,7 @@ public class Volvo240{
         enginePower = 100;
         modelName = "Volvo240";
         stopEngine();
+        System.out.print("j");
     }
     
     public int getNrDoors(){

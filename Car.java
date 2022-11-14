@@ -69,7 +69,7 @@ public abstract class Car implements Movables{
     }
 
     public void startEngine(){
-	    currentSpeed = 0.1;
+	    currentSpeed = 1;
     }
 
     public void stopEngine(){
@@ -83,40 +83,65 @@ public abstract class Car implements Movables{
     }
 
     public void incrementSpeed(double amount){
-        currentSpeed = getCurrentSpeed() + speedFactor() * amount;
+        
     }
 
     public void decrementSpeed(double amount){
-        currentSpeed = getCurrentSpeed() - speedFactor() * amount;
+        
     }
 
     // TODO fix this method according to lab pm
-    public void gas(double amount){
-        incrementSpeed(amount);
+    public void gas(double amount)throws Exception{
+    
+        
+            
+            if (amount > 1 || amount < 0){
+                throw new Exception("Only values from 0 to 1");
+            }
+            else{
+                incrementSpeed(amount);
+
+            }
+
+            
+        
+    
+    
+    
+        
     }
 
     // TODO fix this method according to lab pm
-    public void brake(double amount){
-        decrementSpeed(amount);
+    public void brake(double amount)throws Exception{
+        if (amount > 1 || amount < 0){
+            throw new Exception("Only accept values from 0 to 1");
+        }
+        else{
+            decrementSpeed(amount);
+
+        }
+        
     }
 
     
     private void direction() {
         switch(this.current_direction){
             case 0:{
-                y += currentSpeed;
-                this.current_direction = 0;
+                this.y += currentSpeed;
+                break;
                 
             }
             case 1: {
-                x += currentSpeed;
-
+                this.x += currentSpeed;
+                break;
             }
             case 2:{
-                y-= currentSpeed;
+                this.y-= currentSpeed;
+                break;
             }
             case 3:{
-                x -= currentSpeed;
+                this.x -= currentSpeed;
+                break;
             }
 
         }

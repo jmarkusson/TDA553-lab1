@@ -9,9 +9,9 @@ public abstract class Car implements Movables{
 
 
     
-    public int nrDoors; // Number of doors on the car
-    public double enginePower; // Engine power of the car
-    public double currentSpeed; // The current speed of the car
+    private int nrDoors; // Number of doors on the car
+    private double enginePower; // Engine power of the car
+    private double currentSpeed; // The current speed of the car
     public Color color; // Color of the car
     public String modelName; // The car model name
     public int x;
@@ -58,6 +58,12 @@ public abstract class Car implements Movables{
 
     public double getCurrentSpeed(){
         return currentSpeed;
+    }
+    public void setCurrentSpeed(double new_speed){
+        this.currentSpeed = new_speed;
+        
+
+
     }
 
     public Color getColor(){

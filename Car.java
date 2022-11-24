@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public abstract class Car implements Movable{
+public abstract class Car implements Movables{
     
     public boolean turboOn;
     

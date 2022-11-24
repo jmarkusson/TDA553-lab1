@@ -14,13 +14,18 @@ public abstract class Car implements Movables{
     private double currentSpeed; // The current speed of the car
     public Color color; // Color of the car
     public String modelName; // The car model name
-    public int x;
-    public int y;
+    
+
+
+
+
+    public double x;
+    public double y;
     
     public int current_direction;
 
 
-    public Car(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, int x, int y) {
+    public Car(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, double x, double y) {
         
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
@@ -33,20 +38,25 @@ public abstract class Car implements Movables{
         
     }
 
-    public int getX() {
+
+    public String getModelName() {
+        return modelName;
+    }
+
+    public double getX() {
         return x;
     }
 
-    public void setX(int x) {
+    public void setX(double x) {
         this.x = x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public void setY(double y) {
+        this.y += y;
     }
 
     public int getNrDoors(){
@@ -111,10 +121,6 @@ public abstract class Car implements Movables{
 
             
         
-    
-    
-    
-        
     }
 
     // TODO fix this method according to lab pm
@@ -133,20 +139,20 @@ public abstract class Car implements Movables{
     private void direction() {
         switch(this.current_direction){
             case 0:{
-                this.y += currentSpeed;
+                this.setY(currentSpeed); 
                 break;
                 
             }
             case 1: {
-                this.x += currentSpeed;
+                this.setX(currentSpeed); 
                 break;
             }
             case 2:{
-                this.y-= currentSpeed;
+                this.setY(-currentSpeed);
                 break;
             }
             case 3:{
-                this.x -= currentSpeed;
+                this.setX(currentSpeed);
                 break;
             }
 

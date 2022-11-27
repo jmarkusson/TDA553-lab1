@@ -1,29 +1,42 @@
+import java.util.LinkedList;
+
 public class CarTransportPlatform implements Platform {
 
     private int plattFormState;
+    private boolean ableToLoad;
+    private LinkedList<Car>Cars;
+    private int capacity;
+
+    public CarTransportPlatform(int capacity){
+
+        this.capacity = capacity;
+    }
 
     @Override
     public void plattformUp(int state) {
-        // TODO Auto-generated method stub
+        this.setPlattformState(1);
         
     }
 
     @Override
-    public void plattfromDown(int state) {
-        // TODO Auto-generated method stub
+    public void plattformDown(int state) {
+        this.setPlattformState(0);
         
     }
 
     @Override
     public int getPlattformState() {
-        // TODO Auto-generated method stub
+        
         return plattFormState;
     }
 
     @Override
     public void setPlattformState(int plattFormState) {
-        // TODO Auto-generated method stub
+        this.plattFormState = plattFormState;
         
+    }
+    public LinkedList<Car> getCars() {
+        return Cars;
     }
     
 }

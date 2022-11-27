@@ -8,7 +8,8 @@ public class CarTransporter extends Truck {
     private boolean ableToLoad;
 
     public CarTransporter() {
-        super(2, 100, 0, Color.BLACK, "Car Transporter", 0, 0);
+        super(2, 100, 0, Color.BLACK, "Car Transporter", 0, 0, 
+        new CarTransportPlatform(10));
         
     }
 
@@ -57,15 +58,7 @@ public class CarTransporter extends Truck {
     }
 
 
-    @Override
-    public void plattfromDown(int state) {
-        this.setPlattformState(0);
-    }
-
-
-    public LinkedList<Car> getCars() {
-        return cars;
-    }
+    
 
 
 

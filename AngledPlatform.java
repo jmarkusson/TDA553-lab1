@@ -1,17 +1,23 @@
 public class AngledPlatform implements Platform{
 
     private int plattFormState;
-    private double plattformAngle;
+    private int plattformAngle;
+
+    public AngledPlatform(int plattformAngle){
+
+        this.plattformAngle = plattformAngle;
+    }
 
     @Override
     public void plattformUp(int state) {
-        // TODO Auto-generated method stub
+        this.setPlattformState(Math.min(this.getPlattformState() + state, plattformAngle));
+        
         
     }
 
     @Override
-    public void plattfromDown(int state) {
-        // TODO Auto-generated method stub
+    public void plattformDown(int state) {
+        this.setPlattformState(Math.max(this.getPlattformState() - state, 0));
         
     }
 

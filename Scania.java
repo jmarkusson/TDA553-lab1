@@ -1,45 +1,25 @@
 import java.awt.Color;
 
-public class Scania extends Truck {
+public class Scania extends Truck{
 
-    
-    private final static int plattformAngle = 70;
+
 
     public Scania() {
-        super(2, 100, 0, Color.BLACK, "Scania Interlink", 0, 0);
-        
-    }
-
-    @Override
-    public void incrementSpeed(double amount) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void decrementSpeed(double amount) {
-        // TODO Auto-generated method stub
+        super(2, 100, 0, Color.BLACK, "Scania Interlink", 0, 0 ,
+         new AngledPlattform(70));
         
     }
 
 
     @Override
-    double speedFactor() {
-        // TODO Auto-generated method stub
-        return 0;
+    public Boolean isAbleToMove() {
+        if (plattform.getPlattformState() == 0){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
-    @Override
-    public void plattformUp(int state){
-       
-        this.setPlattformState(Math.min(this.getPlattformState() + state, plattformAngle));
-    }
-
-    @Override
-    public void plattfromDown(int state) {
-       
-        this.setPlattformState(Math.max(this.getPlattformState() - state, 0));
-        
-    }
 
 }

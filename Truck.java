@@ -1,37 +1,42 @@
 import java.awt.Color;
 
-public abstract class Truck extends Vehicle {
+public abstract class Truck extends Vehicle{
+    
+    public Plattform plattform;
 
-    private int plattformState;
+    private final static double slowFactor = 0.8;
 
-    public Truck(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, int x, int y) {
+    public Truck(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, int x, int y, Plattform 
+    plattformType) {
         super(nrDoors, enginePower, currentSpeed, color, modelName, x, y);
+        
+        plattform = plattformType;
 
-        this.plattformState = 0;
+    }
+       
+    @Override
+    public double speedFactor(){
+        return this.getEnginePower() * 0.01 * slowFactor;
     }
 
-    abstract void plattformUp(int state);
+    @Override
+    public void incrementSpeed(double amount){
 
-    abstract void plattfromDown(int state);
-
-    public int getPlattformState() {
-        return plattformState;
+	    this.setCurrentSpeed(Math.min(getCurrentSpeed() + speedFactor() * amount,this.getEnginePower()));
     }
 
-    public void setPlattformState(int plattformState){
-
-
-        if (this.getCurrentSpeed() > 0){
-            System.out.println("Cant change plattformstate while moving");
-        }
-        else{
-        this.plattformState = plattformState;
-        }
+    @Override
+    public void decrementSpeed(double amount){
+        this.setCurrentSpeed(Math.max(getCurrentSpeed() - speedFactor() * amount,0));;
     }
 
+    abstract Boolean isAbleToMove();
+
+
+    @Override
     public void move() {
-        if (this.getPlattformState() > 0){
-            System.out.println("Cant drive while plattform i raised");
+        if (this.isAbleToMove()){
+            System.out.println("Cant drive with the current state of the plattform");
         }
         else{
         startEngine();

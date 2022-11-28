@@ -151,7 +151,6 @@ public abstract class Vehicle implements Movable{
             this.currentDirection = 0;
         }
     }
-  
 
 }
 

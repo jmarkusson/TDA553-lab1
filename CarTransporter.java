@@ -14,48 +14,22 @@ public class CarTransporter extends Truck {
     }
 
 
-    @Override
-    public void incrementSpeed(double amount) {
-        // TODO Auto-generated method stub
-        
-    }
+   
+
 
     @Override
-    public void decrementSpeed(double amount) {
-        
-    }
-
-    public void loadCar(Car c){
-        if (this.getX() < c.getX() && c.getX() < (this.getX() +2) && (this.getY() < c.getY() && c.getY() < (this.getY() +2))){
-            cars.addLast(c);
-
+    public Boolean issetAbleToMove() {
+        if (platform.getPlattformState() == 1){
+            return false;
+        }
+        else{
+            return true;
         }
         
     }
 
-    public void unloadCars(){
-        if (ableToLoad){
-            
 
-        }
-
-        
-    }
-
-    @Override
-    public
-    double speedFactor() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-
-    @Override
-    public void plattformUp(int state) {
-        this.setPlattformState(1);
-        this.setAbleToMove(true);
-        ableToLoad = true;
-    }
+   
 
 
     

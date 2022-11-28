@@ -13,24 +13,7 @@ public class Scania extends Truck implements Platform {
         
     }
 
-    @Override
-    public void incrementSpeed(double amount) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void decrementSpeed(double amount) {
-        // TODO Auto-generated method stub
-        
-    }
-
-
-    @Override
-    public double speedFactor() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
+    
 
     @Override
     public void plattformUp(int state) {
@@ -54,6 +37,16 @@ public class Scania extends Truck implements Platform {
     public void setPlattformState(int plattFormState) {
         // TODO Auto-generated method stub
         
+    }
+
+    @Override
+    public Boolean issetAbleToMove() {
+        if (platform.getPlattformState() == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     

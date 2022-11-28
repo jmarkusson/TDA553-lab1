@@ -3,7 +3,7 @@ import static org.junit.Assert.assertThrows;
 
 import org.junit.Test;
 
-import javafx.scene.media.VideoTrack;
+
 
 
 
@@ -20,8 +20,8 @@ public class LabbTest {
         saab.move();
         volvo.move();
         
-        assertEquals(-1, saab.getX());
-        assertEquals(-1, volvo.getX());
+        assertEquals(-1, saab.getX(), 0.001);
+        assertEquals(-1, volvo.getX(), 0.001);
     } 
 
     @Test
@@ -35,8 +35,8 @@ public class LabbTest {
         saab.move();
         volvo.move();
 
-        assertEquals(-1, saab.getY());
-        assertEquals(-1, volvo.getY());
+        assertEquals(-1, saab.getY(), 0.001);
+        assertEquals(-1, volvo.getY(), 0.001);
 
     } 
 

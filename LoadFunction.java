@@ -1,24 +1,46 @@
-import java.util.LinkedList;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+
 
 public class LoadFunction{
+public ArrayDeque<Car>cars;
+public int capacity;
 
-public void loadCar(Car c, Truck ct, LinkedList cars){
+public LoadFunction(int capacity){
 
-    if (ct.getX() < c.getX() && c.getX() < (ct.getX() +2) && (ct.getY() < c.getY() && c.getY() < (ct.getY() +2))){
-        cars.addLast(c);
+    cars = new ArrayDeque<>(cars);
+    this.capacity = capacity;
+
+}
+
+public void loadCar(Car c,double x,double y){
+
+    if (x < c.getX() && c.getX() < (x +2) && y < c.getY() && c.getY() < y +2 && cars.size() < capacity){
+        cars.add(c);
+    }
+    else if(cars.size() +1 > capacity){
+        System.out.println("There is no capacity for any more cars");
+
+    }
+    else{
+        System.out.println("The car is not close enough to be loaded");
+
+    }
 
     }
     
+
+public void unloadCar(double x, double y){
+
+    Car c = cars.pop();
+
+    c.setX(x+1);
+    c.setY(y+1);
+
+    
+
 }
-public void unloadCar(Car c, Truck ct, LinkedList cars){
 
-    for (int i=1; i < cars.length;  {
-
-
-
-    }
-
-}
 
 
 

@@ -4,7 +4,7 @@ import java.awt.*;
 
 public abstract class Vehicle implements Movables{
     
-    public boolean turboOn;
+    
     
     private int nrDoors; // Number of doors on the car
     private double enginePower; // Engine power of the car
@@ -61,22 +61,22 @@ public abstract class Vehicle implements Movables{
     }
 
     public void startEngine(){
-	    currentSpeed = 1;
+	    currentSpeed = 0.1;
     }
 
     public void stopEngine(){
 	    currentSpeed = 0;
     }
 
-    public  double speedFactor(){
-       return 0;
-    }
+    abstract double speedFactor();
+    
 
     public void incrementSpeed(double amount){
+        this.setCurrentSpeed(Math.min(getCurrentSpeed() + speedFactor() * Math.max(amount, 0), this.getEnginePower()));
     }
 
     public void decrementSpeed(double amount){
-   
+        this.setCurrentSpeed(Math.max(getCurrentSpeed() - speedFactor() * Math.max(amount, 0),0));
     }
 
     // TODO fix this method according to lab pm
@@ -154,9 +154,8 @@ public abstract class Vehicle implements Movables{
         }
     }
   
-    public void move() {
-        startEngine();
-        direction();    
-        
+    
+    public int getCurrentDirection(){
+        return this.currentDirection;
     }
 }

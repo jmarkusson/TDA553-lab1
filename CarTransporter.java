@@ -1,39 +1,49 @@
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.ArrayDeque;
 
-public class CarTransporter extends Truck {
 
-    private LinkedList<Car> cars;
-    private boolean ableToLoad;
+public class CarTransporter extends Truck implements CarLoadable {
+    
+    private CarLoad load;
 
     public CarTransporter() {
-        super(2, 100, 0, Color.BLACK, "Car Transporter", 0, 0, 
-        new CarTransportPlatform(10));
-        
+        super(2, 100, 0, Color.BLACK, "Car Transporter", 0, 0,
+         new CarTransportPlatform());
+         load = new CarLoad(10);
     }
-
-
-   
 
 
     @Override
-    public Boolean issetAbleToMove() {
-        if (platform.getPlattformState() == 1){
-            return false;
-        }
-        else{
+    public Boolean isAbleToMove() {
+        if (getPlatformState() == 1){
             return true;
         }
-        
+        else {
+            return false;
+        } 
     }
 
 
-   
+    @Override
+    public void load(Car c) {
+        if (getPlatformState() == 0){
+            load.load(getX(), getY(), c);
+        }
+    }
 
+    @Override
+    public void unload() {
+        if(getPlatformState() == 0){
+           load.unload(getX(), getY());
+        }        
+    }
+
+
+    @Override
+    public ArrayDeque<Car> getCars() {
+        
+        return load.getCars();
+    }
 
     
-
-
-
 }

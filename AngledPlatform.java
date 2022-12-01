@@ -1,37 +1,41 @@
 public class AngledPlatform implements Platform{
 
-    private int plattFormState;
-    private int plattformAngle;
+    private int maxPlatformAngle;
+    private int platformState;
 
-    public AngledPlatform(int plattformAngle){
+    public AngledPlatform(int maxPlatformAngle){
 
-        this.plattformAngle = plattformAngle;
+        this.maxPlatformAngle = maxPlatformAngle;
     }
 
     @Override
-    public void plattformUp(int state) {
-        this.setPlattformState(Math.min(this.getPlattformState() + state, plattformAngle));
-        
+    public void platformUp(int state){
+       
+        this.setPlatformState(Math.min(this.getPlatformState() + state, maxPlatformAngle));
+
+    }
+
+    @Override
+    public void platfromDown(int state) {
+       
+        this.setPlatformState(Math.max(this.getPlatformState() - state, 0));
         
     }
 
     @Override
-    public void plattformDown(int state) {
-        this.setPlattformState(Math.max(this.getPlattformState() - state, 0));
+    public void setPlatformState(int platformState) {
+        if ((platformState > maxPlatformAngle) || (platformState < 0)){
+            System.out.println("Only accepts value between 0 and " + maxPlatformAngle);
+        }
         
+        else {
+            this.platformState = platformState;
+        }
     }
 
     @Override
-    public int getPlattformState() {
-        return plattFormState;
+    public int getPlatformState() {
+        return platformState;
     }
 
-    @Override
-    public void setPlattformState(int plattformState) {
-        this.plattFormState = plattformState;
-        
-    }
-
-
-    
 }

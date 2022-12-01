@@ -1,42 +1,37 @@
-import java.util.LinkedList;
+public class CarTransportPlatform implements Platform{
 
-public class CarTransportPlatform implements Platform {
-
-    private int plattFormState;
-    private boolean ableToLoad;
-    private LoadFunction load;
+    private int platformState;
     
-    private int capacity;
-
-    public CarTransportPlatform(int capacity){
-        load = new LoadFunction(10);
-        this.capacity = capacity;
-        
+    public CarTransportPlatform(){
+        this.platformState = 0;
+     
     }
 
     @Override
-    public void plattformUp(int state) {
-        this.setPlattformState(1);
-        
+    public void platformUp(int state) {
+
+        this.setPlatformState(1);
     }
 
     @Override
-    public void plattformDown(int state) {
-        this.setPlattformState(0);
-        
+    public void platfromDown(int state) {
+
+        this.setPlatformState(0);
     }
 
     @Override
-    public int getPlattformState() {
-        
-        return plattFormState;
+    public void setPlatformState(int platformState) {
+        if (platformState > 1 || platformState < 0){
+            System.out.println("Only accepts values between 1 or 0");;
+        }
+        else {
+            this.platformState = platformState;
+        }
     }
 
     @Override
-    public void setPlattformState(int plattFormState) {
-        this.plattFormState = plattFormState;
-        
+    public int getPlatformState() {
+        return platformState;
     }
-    
-    
+
 }

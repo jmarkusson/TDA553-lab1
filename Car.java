@@ -1,7 +1,7 @@
 import java.awt.*;
 
 
-    public class Car extends Vehicle {
+    public abstract class Car extends Vehicle {
         public Car(int nrDoors, double enginePower, double currentSpeed, java.awt.Color color, String modelName,
                 double x, double y) 
         {
@@ -10,10 +10,13 @@ import java.awt.*;
         }
 
     
-   
+   @Override
     public void move() {
         startEngine();
         direction();    
         
     }
-}
+
+
+
+    }

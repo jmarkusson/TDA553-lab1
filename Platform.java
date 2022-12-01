@@ -1,16 +1,12 @@
 public interface Platform {
 
-    
+    void platformUp(int state);
 
-    public void plattformUp(int state);
+    void platfromDown(int state);
 
-    public void plattformDown(int state);
+    void setPlatformState(int plattformState);
 
-    public int getPlattformState();
-        
-    
-
-    public void setPlattformState(int plattFormState);
+    int getPlatformState();
 }
 
 

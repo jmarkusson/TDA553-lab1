@@ -1,25 +1,30 @@
 import java.util.ArrayDeque;
 
-public class LoadFunktion {
+public class CarLoad{
     
     private ArrayDeque<Car> cars;
     private int capacity;
+  
 
-    public LoadFunktion(int capacity){
+    public CarLoad(int capacity){
         cars = new ArrayDeque<Car>();
         this.capacity = capacity;
+        
     }
 
     public ArrayDeque<Car> getCars() {
         return cars;
     }
 
+    
     public int getCapacity() {
         return capacity;
     }
 
-    public void loadCar(Car c, double x, double y){
-        if(x < c.getX() && c.getX() < (x+2) && y < c.getY() && c.getY() < (y+2)
+    
+    public void load(double x, double y, Car c) {
+        
+        if(x <= c.getX() && c.getX() <= (x+2) && y <= c.getY() && c.getY() <= (y+2)
         && cars.size() < capacity){
             cars.add(c);
         }
@@ -29,14 +34,15 @@ public class LoadFunktion {
         else {
             System.out.println("The car is not close enough to load");
         }
-    } 
+    }
 
-    void unloadCar(double x, double y){
-
+    
+    public void unload(double x, double y) {
         Car c = cars.pop();
         c.setX((x+1));
         c.setY(y+1);
+        
     }
 
-
+    
 }

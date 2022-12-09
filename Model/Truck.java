@@ -1,3 +1,4 @@
+package Model;
 import java.awt.Color;
 
 
@@ -21,20 +22,31 @@ public abstract class Truck extends Vehicle{
         return this.getEnginePower() * 0.01 * slowFactor;
     }
 
-
     abstract Boolean isAbleToMove();
 
+    @Override 
+    public void startEngine(){
+
+        if(isEngineOn()){
+            return;
+        }
+        else if(this.isAbleToMove()){
+            this.setEngineOn(true);
+            setCurrentSpeed(0.1);;
+        }
+        else{
+            System.out.println("Cant drive with the current state of the plattform");
+        }
+    }
 
     @Override
     public void move() {
 
-        if (this.isAbleToMove()){
-            System.out.println("Cant drive with the current state of the plattform");
+        if (isEngineOn()){
+            direction();   
         }
-
         else{
-        startEngine();
-        direction();    
+            return;
         }
     }
     

@@ -1,3 +1,4 @@
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -20,15 +21,15 @@ public class VehicleView extends JFrame{
     // The controller member
     VehicleController vehicleC;
 
-    DrawPanel drawPanel = new DrawPanel(X, Y-240);
+    DrawPanel drawPanel;
 
     JPanel controlPanel = new JPanel();
-
     JPanel gasPanel = new JPanel();
-    JSpinner gasSpinner = new JSpinner();
+    JSpinner gasSpinner;
+    JSpinner brakeSpinner;
+    int brakeAmount = 0;
     int gasAmount = 0;
     JLabel gasLabel = new JLabel("Amount of gas");
-
 
     JButton gasButton = new JButton("Gas");
     JButton brakeButton = new JButton("Brake");
@@ -43,7 +44,17 @@ public class VehicleView extends JFrame{
     // Constructor
     public VehicleView(String framename, VehicleController cc){
         this.vehicleC = cc;
+        drawPanel = new DrawPanel(X, Y-240, cc.getVehicles());
+
         initComponents(framename);
+    }
+
+    public void moveit(int index, int x, int y){
+        drawPanel.moveit(index, x, y);
+    }
+
+    public void repaint(){
+        drawPanel.repaint();
     }
 
     // Sets everything in place and fits everything
@@ -56,6 +67,7 @@ public class VehicleView extends JFrame{
 
         this.add(drawPanel);
 
+        
 
 
         SpinnerModel spinnerModel =
@@ -67,6 +79,14 @@ public class VehicleView extends JFrame{
         gasSpinner.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
                 gasAmount = (int) ((JSpinner)e.getSource()).getValue();
+            }
+        });
+
+    
+        brakeSpinner = new JSpinner(spinnerModel);
+        brakeSpinner.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent e) {
+                brakeAmount = (int) ((JSpinner)e.getSource()).getValue();
             }
         });
 
@@ -101,7 +121,7 @@ public class VehicleView extends JFrame{
         this.add(stopButton);
 
         // This actionListener is for the gas button only
-        // TODO: Create more for each component as necessary
+      
         gasButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -114,8 +134,49 @@ public class VehicleView extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 vehicleC.startEngine();
         }
-    });
+        });
 
+        brakeButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                vehicleC.brake(brakeAmount);
+            }
+        });
+
+        stopButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                vehicleC.stopEngine();
+            }
+        });
+
+        turboOffButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                vehicleC.turboOff();
+            }
+        }); 
+
+        turboOnButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                vehicleC.turboOn();
+            }
+        });
+
+        liftBedButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                vehicleC.liftBedButton();
+            }
+        });
+
+        lowerBedButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                vehicleC.lowerBedButton();
+            }
+        });
         // Make the frame pack all it's components by respecting the sizes if possible.
         this.pack();
 
